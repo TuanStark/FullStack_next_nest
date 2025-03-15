@@ -1,0 +1,25 @@
+// Create user
+mutation{
+  createUser(createUserInput : {
+    email: "lecongtuan@gmail.com",
+    password:"472004"
+    name: "Le Tuan"
+  }){
+    email
+    password
+    name
+  }
+}
+
+// Login
+mutation{
+  signIn(signInInput:{
+    email: "lecongtuan@gmail.com"
+    password:"472004"
+  }){
+    id
+    name
+    accessToken
+    avartar
+  }
+}

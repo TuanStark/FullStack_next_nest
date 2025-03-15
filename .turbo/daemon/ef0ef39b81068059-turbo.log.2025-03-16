@@ -1,0 +1,1 @@
+2025-03-16T07:31:05.328783Z  WARN turborepo_filewatch: encountered error watching filesystem filewatching backend error: OS file watch limit reached. about ["/home/letuan/Documents/FullStack_Next_Nest/blog-turporepo/apps/api/dist"]

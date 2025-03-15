@@ -8,7 +8,7 @@ import { useActionState } from "react";
 const SignInForm = () => {
     const [state, action] = useActionState(signIn, undefined);
     return (
-        <form action={action} className="flex flex-col gap-2">
+        <form action={action} className="flex flex-col gap-2 items-center">
             {!!state?.message && (
                 <p className="text-red-500 text-sm">{state.message}</p>
             )}

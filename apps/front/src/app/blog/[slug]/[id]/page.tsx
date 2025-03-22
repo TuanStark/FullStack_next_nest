@@ -3,6 +3,9 @@ import React from 'react'
 import { fetchPostById } from "@/lib/actions/postAction";
 import Image from "next/image";
 import SanitizedContent from "./_components/SantizedComponents";
+import Comments from "./_components/comments";
+import { getSession } from "@/lib/session";
+
 type Props = {
     params: {
         id: string
@@ -10,8 +13,9 @@ type Props = {
 }
 export default async function page({ params }: Props) {
     const postId = (await params).id;
-    console.log(postId);
     const post = await fetchPostById(+postId);
+    const session = await getSession();
+    
     return (
         <main className='container mx-auto px-4 py-8 mt-16'>
             <h1 className='text-4xl font-bold mb-4 text-slate-700'>{post.title}</h1>
@@ -29,7 +33,7 @@ export default async function page({ params }: Props) {
 
             <SanitizedContent content={post.content} />
             {/*Put the  Post Comment here */}
-
+            <Comments user={session?.user} postId={post.id} />
         </main>
     )
 }

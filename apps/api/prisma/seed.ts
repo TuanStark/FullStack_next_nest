@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
 import { PrismaClient } from '@prisma/client';
+import { hash } from 'argon2';
 
 const prisma = new PrismaClient();
 
@@ -13,13 +14,15 @@ function generateSlug(title: string) {
 
 // Seed the database with some users -> fake data users
 async function main() {
+    const defaultPassword = await hash('123');
     const users = Array.from({ length: 10 }).map(() => ({
         name: faker.person.fullName(),
         email: faker.internet.email(),
         bio: faker.lorem.sentence(),
-        avatar: faker.image.avatar()
+        avatar: faker.image.avatar(),
+        password: defaultPassword,
     }));
-
+    
     await prisma.user.createMany({
         data: users
     });

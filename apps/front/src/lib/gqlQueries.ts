@@ -51,3 +51,86 @@ export const SIGN_IN_MUTATION = gql`
     }
   }
 `;
+
+export const GET_POST_COMMENTS = gql`
+  query getPostComments($postId: Int!, $take: Int, $skip: Int) {
+    getPostComments(postId: $postId, take: $take, skip: $skip) {
+      id
+      content
+      createdAt
+      author {
+        name
+        avatar
+      }
+    }
+
+    postCommentCount(postId: $postId)
+  }
+`;
+
+export const CREATE_COMMENT_MUTATION = gql`
+  mutation createComment($input: CreateCommentInput!) {
+    createComment(createCommentInput: $input) {
+      id
+    }
+  }
+`;
+
+export const POST_LIKES = gql`
+  query PostLikeData($postId: Int!) {
+    postLikesCount(postId: $postId)
+    userLikedPost(postId: $postId)
+  }
+`;
+
+export const LIKE_POST_MUTATION = gql`
+  mutation LikePost($postId: Int!) {
+    likePost(postId: $postId)
+  }
+`;
+
+export const UNLIKE_POST_MUTATION = gql`
+  mutation UnLikePost($postId: Int!) {
+    unlikePost(postId: $postId)
+  }
+`;
+
+export const GET_USER_POSTS = gql`
+  query GetUserPosts($skip: Int, $take: Int) {
+    getUserPosts(skip: $skip, take: $take) {
+      id
+      title
+      slug
+      thumbnail
+      published
+      createdAt
+      content
+      _count {
+        likes
+        comments
+      }
+    }
+    userPostCount
+  }
+`;
+export const CREATE_POST_MUTATION = gql`
+  mutation CreatePostMutation($input: CreatePostInput!) {
+    createPost(createPostInput: $input) {
+      id
+    }
+  }
+`;
+
+export const UPDATE_POST_MUTATION = gql`
+  mutation UpdatePost($input: UpdatePostInput!) {
+    updatePost(updatePostInput: $input) {
+      id
+    }
+  }
+`;
+
+export const DELETE_POST_MUTATION = gql`
+  mutation DeletePost($postId: Int!) {
+    deletePost(postId: $postId)
+  }
+`;

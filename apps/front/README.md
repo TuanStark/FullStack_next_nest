@@ -24,6 +24,9 @@ Linraries:
 - npm i zod
 -  `openssl rand -hex 32` // gen secret key
 - npm i jose
+- npm i passport-google-oauth20
+- npm i -D @types/passport-google-oauth20
+- npm i @tanstack/react-query
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.

@@ -20,7 +20,7 @@ const Profile = ({ user }: Props) => {
             <PopoverTrigger>
                 <Avatar>
                     <AvatarImage
-                        className="rounded-full w-14 border-2 border-white"
+                        className="rounded-full w-[50px] h-[50px] border-2 border-white"
                         src={user.avatar}
                     />
                     <AvatarFallback>

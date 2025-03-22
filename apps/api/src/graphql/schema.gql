@@ -37,6 +37,11 @@ type Tag {
   updatedAt: DateTime!
 }
 
+type Count {
+  likes: Int!
+  comments: Int!
+}
+
 type Post {
   id: Int!
   title: String!
@@ -49,6 +54,7 @@ type Post {
   author: User!
   tags: [Tag!]!
   comments: [Comment!]!
+  _count: Count!
 }
 
 type AuthPayload {
@@ -62,15 +68,40 @@ type Query {
   posts(skip: Float, take: Float): [Post!]!
   postCount: Int!
   getPostById(id: Int!): Post!
+  getUserPosts(skip: Int, take: Int): [Post!]!
+  userPostCount: Int!
+  getPostComments(postId: Int!, take: Int = 12, skip: Int = 0): [Comment!]!
+  postCommentCount(postId: Int!): Int!
   tag(id: Int!): Tag!
 }
 
 type Mutation {
+  createPost(createPostInput: CreatePostInput!): Post!
+  updatePost(updatePostInput: UpdatePostInput!): Post!
   createUser(createUserInput: CreateUserInput!): User!
+  createComment(createCommentInput: CreateCommentInput!): Comment!
   createTag(createTagInput: CreateTagInput!): Tag!
   updateTag(updateTagInput: UpdateTagInput!): Tag!
   removeTag(id: Int!): Tag!
+  likePost(postId: Int!): Boolean!
   signIn(signInInput: SignInInput!): AuthPayload!
+}
+
+input CreatePostInput {
+  title: String!
+  content: String!
+  thumbnail: String
+  tags: [String!]!
+  published: Boolean!
+}
+
+input UpdatePostInput {
+  title: String
+  content: String
+  thumbnail: String
+  tags: [String!]
+  published: Boolean
+  postId: Int!
 }
 
 input CreateUserInput {
@@ -79,6 +110,11 @@ input CreateUserInput {
   avatar: String
   bio: String
   password: String!
+}
+
+input CreateCommentInput {
+  postId: Int!
+  content: String!
 }
 
 input CreateTagInput {

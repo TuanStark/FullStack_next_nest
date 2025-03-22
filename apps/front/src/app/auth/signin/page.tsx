@@ -10,9 +10,9 @@ const SignInPage = () => {
       {/* Put SignIn form here */}
       <SignInForm />
       <Link href={"/auth/forgot"}>Forgot Your Password?</Link>
-      {/* <Button>
+      <Button>
         <a href={`${BACKEND_URL}/auth/google/login`}>Sign In With Google</a>
-      </Button> */}
+      </Button>
     </div>
   );
 };
